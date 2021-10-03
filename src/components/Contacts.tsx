@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useContacts } from "../ApiServices/contacts";
+import './Contacts.css';
 
 type NewOrExistingContact = {
     name: string;
@@ -21,8 +22,7 @@ const UpdateOrCreateNewContactForm = ({
 
     return (
         <section className="UpdateOrCreateNewContactForm">
-            hi there
-            <form>
+            <form className="UpdateOrCreateNewContactForm__Inputs">
                 <input
                     className="UpdateOrCreateNewContactForm__Input"
                     type="text"
@@ -98,7 +98,7 @@ export const ShowContact = ({ contact }: { contact: NewOrExistingContact }) => {
                     </button>
                     <button
                         className="Contact__UpdateExisting"
-                        onClick={() => setIsAddingOrUpdatingContact(true)}
+                        onClick={() => setIsAddingOrUpdatingContact(!isAddingOrUpdatingContact)}
                     >
                         +
                     </button>
@@ -107,7 +107,7 @@ export const ShowContact = ({ contact }: { contact: NewOrExistingContact }) => {
                 <div className="Contact__DoesNotExist">
                     <button
                         className="Contact__AddNewContact"
-                        onClick={() => setIsAddingOrUpdatingContact(true)}
+                        onClick={() => setIsAddingOrUpdatingContact(!isAddingOrUpdatingContact)}
                     >
                         +
                     </button>

@@ -1,0 +1,14 @@
+.UpdateOrCreateNewContactForm {
+    position: relative;
+}
+
+.UpdateOrCreateNewContactForm__Inputs {
+    position: absolute;
+    top: 1.25rem;
+    left: -2rem; 
+}
+
+.Contact__Exists {
+    display: flex;
+}
+

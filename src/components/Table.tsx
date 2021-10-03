@@ -7,6 +7,7 @@ import {
 import { Contact, transformStringToContact } from "../ApiServices/contacts";
 import { MessageActions } from "./MessageActions";
 import { ShowContact } from "./Contacts";
+import './Table.css';
 
 const MessageTableCell: FC = ({ children }) => (
     <td className="MessageTableCell">{children}</td>
@@ -37,7 +38,7 @@ const MessageRow = ({
             </MessageTableCell>
             <MessageTableCell>{message.date}</MessageTableCell>
             <MessageTableCell>
-                <button onClick={() => deleteMessage(message.id)}>
+                <button className="MessageRow__Delete" onClick={() => deleteMessage(message.id)}>
                     Delete{" "}
                 </button>
             </MessageTableCell>
