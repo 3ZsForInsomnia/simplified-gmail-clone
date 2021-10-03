@@ -1,5 +1,5 @@
 const settings = {
-    "signature": "--------\nCoding Test User\nFrontend Engineer, Wallaroo",
+    "signature": "--------\nCoding Test User\nFrontend Engineer",
     "vacation-autorespond": false,
     "density": "compact",
     "inbox-type": "priority-inbox",
