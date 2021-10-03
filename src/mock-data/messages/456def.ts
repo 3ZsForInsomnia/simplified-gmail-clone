@@ -1,4 +1,4 @@
-export default {
+const message = {
     "from": "Richard Roe <richard.roe@example.com>",
     "id": "456def",
     "subject": "Lunch next week",
@@ -7,3 +7,5 @@ export default {
     "reply-to": "Richard Roe <richard.roe@example.com>",
     "body": "Hey,\nI'll be in town Monday and Tuesday - want to grab lunch?"
 }
+
+export default message;

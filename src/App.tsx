@@ -1,24 +1,17 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import { MessagesTable } from './components/Table';
+
+const currentUser = {
+    name: 'Coding Test User',
+    email: 'foo.bar@example.com',
+    id: '1',
+};
 
 const App = () => {
     return (
         <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
+            <MessagesTable currentUser={currentUser} />
         </div>
     );
 }

@@ -6,14 +6,20 @@ export type MessageMetadata = {
     isMarkedAsImportant: boolean;
     isArchived: boolean;
 };
+export const defaultMessageMetadata: MessageMetadata = {
+    isMarkedAsImportant: false,
+    isMarkedAsSpam: false,
+    isArchived: false
+};
 
 export type Message = {
     subject: string;
     body: string;
     from: string;
     to: string;
+    id: string;
     date: string;
-    "reply-to": string;
+    "reply-to"?: string;
 };
 
 export type MessageFormInputs = Pick<Message, "subject" | "body" | "to"> & {
@@ -22,7 +28,7 @@ export type MessageFormInputs = Pick<Message, "subject" | "body" | "to"> & {
 
 const createNewMessageData = (sendersContactInfo: Contact) => (
     messageData: MessageFormInputs
-): { message: Message } => ({
+): { message: Omit<Message, "id"> } => ({
     message: {
         ...messageData,
         from: sendersContactInfo.name,
@@ -32,7 +38,7 @@ const createNewMessageData = (sendersContactInfo: Contact) => (
     }
 });
 
-const useMessages = (currentUsersContactInfo: Contact) => {
+export const useMessages = (currentUsersContactInfo: Contact) => {
     const createMessageDataForCurrentUser = createNewMessageData(
         currentUsersContactInfo
     );
@@ -45,14 +51,6 @@ const useMessages = (currentUsersContactInfo: Contact) => {
     const deleteMessage = (idOfMessageToDelete: string) =>
         console.log(`HTTP:DELETE /messages/${idOfMessageToDelete}`);
 
-    const updateMessageMetadata = (
-        idOfMessageToUpdate: string,
-        metadata: Partial<MessageMetadata>
-    ) =>
-        console.log(`HTTP:POST /message/${idOfMessageToUpdate}`, {
-            metadata
-        });
-
     const createNewMessage = (newMessageData: MessageFormInputs) =>
         console.log(
             `HTTP:POST /messages`,
@@ -63,9 +61,17 @@ const useMessages = (currentUsersContactInfo: Contact) => {
         getMessage,
         getMessages,
         createNewMessage,
-        deleteMessage,
-        updateMessageMetadata
+        deleteMessage
     };
+};
+
+export const useMessageMetadata = () => {
+    const updateMessageMetadata = (
+        idOfMessageToUpdate: string,
+        metadata: Partial<MessageMetadata>
+    ) => console.log(`HTTP:POST /message/${idOfMessageToUpdate}`, metadata);
+
+    return { updateMessageMetadata };
 };
 
 export default useMessages;
